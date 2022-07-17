@@ -20,15 +20,39 @@ app.use(express.static('public'));
 
 //Starts the server
 app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT} 🚀`)
+    console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
 
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
+    res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 app.get('/api/notes', (req, res) =>
-  res.json(notesDB)
+    res.json(notesDB)
 );
 
+app.post('/api/notes', (req, res) => {
+    
+    const newNote = req.body;
+    
+    fs.readFile('./db/db.json', 'utf-8', (error, data) =>{
+        if (error){
+            console.log(error);
+        }
+
+        else{
+            //Get the json
+            const prevNotes = JSON.parse(data)
+
+            //Inserts the new note
+            prevNotes.push(newNote);
+
+            //Writes the JSON file
+            fs.writeFile('./db/db.json',
+            JSON.stringify(prevNotes, null, 2), (wrterror) => 
+                wrterror ? console.error(wrterror) : console.info('Note added sucesfully')
+            )
+        }
+    })
+});
 
