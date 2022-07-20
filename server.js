@@ -61,37 +61,38 @@ app.post('/api/notes', (req, res) => {
 });
 
 
-app.delete('/api/notes/:noteID', (req, res) => {
+// app.delete('/api/notes/:noteID', (req, res) => {
     
-    const id = req.params.noteID;
+//     const id = req.params.noteID;
 
-    fs.readFile('./db/db.json', 'utf-8', (error, data) =>{
-        if (error){
-            console.log(error);
-        }
+//     fs.readFile('./db/db.json', 'utf-8', (error, data) =>{
+//         if (error){
+//             console.log(error);
+//         }
 
-        else{
-            //Get the json
-            const prevNotes = JSON.parse(data)
+//         else{
+//             //Get the json
+//             const prevNotes = JSON.parse(data)
 
-            prevNotes.forEach(note => {
-                if( note.id === id){
-                    delete note.title;
-                    delete note.text;
-                    delete note.id;
-                    console.log(prevNotes)
-                }
+//             prevNotes.forEach(note => {
+//                 if( note.id === id){
+//                     delete note.title;
+//                     delete note.text;
+//                     delete note.id;
+//                     console.log(prevNotes)
+//                 }
 
                 
-                //Writes the JSON file
-                fs.writeFile('./db/db.json',
-                JSON.stringify(prevNotes, null, 2), (wrterror) => 
-                    wrterror ? console.error(wrterror) : console.info('Note deleted sucesfully')
-                )
-            });
+//                 //Writes the JSON file
+//                 fs.writeFile('./db/db.json',
+//                 JSON.stringify(prevNotes, null, 2), (wrterror) => 
+//                     wrterror ? console.error(wrterror) : console.info('Note deleted sucesfully')
+//                 )
+//             });
 
             
-        }
-    })
-    res.send('Deleted sucesfully')
-  })
+//         }
+//     })
+//     res.send('Deleted sucesfully')
+//     console.log(note.title)
+//   })

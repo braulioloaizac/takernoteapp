@@ -10,7 +10,6 @@ if (window.location.pathname === '/notes.html') {
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
   newNoteBtn = document.querySelector('.new-note');
-  noteElement = document.querySelector('ul');
   noteList = document.querySelectorAll('.list-container .list-group');
 }
 
@@ -59,6 +58,7 @@ const deleteNote = (id) =>
     headers: {
       'Content-Type': 'application/json',
     },
+    
   });
 
 
@@ -145,7 +145,7 @@ const handleRenderSaveBtn = () => {
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
   
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes.html') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
@@ -186,12 +186,11 @@ const renderNoteList = async (notes) => {
 
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
-    noteElement.append(li);
     li.dataset.note = JSON.stringify(note);
     noteListItems.push(li);
   });
 
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes.html') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
 };

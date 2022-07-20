@@ -1,13 +1,27 @@
 [
-  
   {
-    "title": "Note example 3",
-    "text": "This is an example 3",
-    "id": "5956"
+    "title": "Note Example 5",
+    "text": "This is an example",
+    "id": "f60e"
   },
   {
-    "title": "Note example 4",
-    "text": "This is an example 4",
-    "id": "8aa5"
+    "title": "Note 1",
+    "text": "Example 1",
+    "id": "33a7"
+  },
+  {
+    "title": "New Note",
+    "text": "This is the new note",
+    "id": "c638"
+  },
+  {
+    "title": "Other Note",
+    "text": "This is the other note\n",
+    "id": "bb9b"
+  },
+  {
+    "title": "The other example",
+    "text": "This is the other example",
+    "id": "b3ab"
   }
 ]
