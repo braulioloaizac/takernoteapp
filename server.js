@@ -6,7 +6,6 @@ const uuid = require('./helpers/uuid')
 
 //Imports the Data Base
 const notesDB = require('./db/db.json');
-const { randomUUID } = require('crypto');
 
 //Sets the port to 3001
 const PORT = process.env.PORT || 3001;
@@ -51,13 +50,15 @@ app.post('/api/notes', (req, res) => {
             prevNotes.push(newNote);
 
             //Writes the JSON file
-            fs.writeFile('./db/db.json',
-            JSON.stringify(prevNotes, null, 2), (wrterror) => 
-                wrterror ? console.error(wrterror) : console.info('Note added sucesfully')
+            fs.writeFile(
+                path.join(__dirname, './db/db.json'),
+                JSON.stringify(prevNotes, null, 2), (wrterror) => 
+                    wrterror ? console.error(wrterror) : console.info('Note added sucesfully')
             )
         }
     })
-    res.send('Added Note')
+
+    res.json()
 });
 
 
@@ -73,26 +74,23 @@ app.post('/api/notes', (req, res) => {
 //         else{
 //             //Get the json
 //             const prevNotes = JSON.parse(data)
+//             // for(let i = 0; i < prevNotes.length; i++){
 
-//             prevNotes.forEach(note => {
-//                 if( note.id === id){
-//                     delete note.title;
-//                     delete note.text;
-//                     delete note.id;
-//                     console.log(prevNotes)
-//                 }
+//                 //  if( prevNotes[i].id === id){
+                    
+                    
+//                      prevNotes.filter(note => {
+//                         note.id != id;
+//                      })
 
-                
-//                 //Writes the JSON file
-//                 fs.writeFile('./db/db.json',
-//                 JSON.stringify(prevNotes, null, 2), (wrterror) => 
-//                     wrterror ? console.error(wrterror) : console.info('Note deleted sucesfully')
-//                 )
-//             });
-
-            
-//         }
+//                      //Writes the JSON file
+//                      fs.writeFile('./db/db.json',
+//                      JSON.stringify(prevNotes, null, 2), (wrterror) => 
+//                          wrterror ? console.error(wrterror) : console.info('Note deleted sucesfully')
+//                      )
+//                 //  }
+//             // }  
+//         }    
 //     })
 //     res.send('Deleted sucesfully')
-//     console.log(note.title)
 //   })
